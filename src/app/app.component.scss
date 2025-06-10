@@ -1,5 +1,5 @@
 @use 'mixins' as *;
-@use 'variables' as *;
+@use '../variables' as *;
 
 :host {
   width: 100%;
@@ -10,8 +10,9 @@ main {
   width: min(1316px, 90%);
   margin: auto;
   padding: 1rem 0;
-  // flex-wrap: wrap;
+  // flex-wrap: wrap; 
 }
+
 
 .desserts {
   @include flex(column, flex-start, stretch, 2rem);
@@ -20,7 +21,7 @@ main {
   
   h1 {
     @include TextPreset1;
-    color: $rose-900;
+    color: $black;
   }
 }
 
@@ -46,26 +47,26 @@ main {
       }
     }
 
-    // .add-to-cart-container button {
-    //   @include flex(row, flex-start, stretch, 0.5rem);
-    //   padding: 0.5rem 1rem;
-    //   border: 1px solid $rose-400;
-    //   background-color: $white;
-    //   border-radius: 50px;
-    //   width: fit-content;
-    //   margin: -1.2rem auto;
-    //   cursor: pointer;
+    .add-to-cart-container button {
+      @include flex(row, flex-start, stretch, 0.5rem);
+      padding: 0.5rem 1rem;
+      border: 1px solid $rose-400;
+      background-color: $white;
+      border-radius: 50px;
+      width: fit-content;
+      margin: -1.2rem auto;
+      cursor: pointer;
 
-    //   &:hover {
-    //     color: $red;
-    //     border-color: $red;
-    //     transition: all 300ms ease-in-out;
-    //   }
+      &:hover {
+        color: $red;
+        border-color: $red;
+        transition: all 300ms ease-in-out;
+      }
 
-    //   p {
-    //     @include TextPreset4Bold;
-    //   }
-    // }
+      p {
+        @include TextPreset4Bold;
+      }
+    }
 
     // item info
     .item-info {
@@ -87,6 +88,8 @@ main {
   height: fit-content;
   flex: 1 0 380px;
   padding: 1rem;
+  background-color: $cart-backColor;
+  border-radius: 12px;
 
   h2 {
     @include TextPreset2;
