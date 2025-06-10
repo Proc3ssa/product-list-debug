@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-add-to-cart',
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.scss'
-});
+})
 
 export class AddToCartComponent {
   isAddedToCart = false;
@@ -15,10 +15,15 @@ export class AddToCartComponent {
   }
 
   decreaseProductItem() {
-    if (this.quantity < 1) {
-      this.isAddedToCart = false;
-    }
+    if (this.quantity > 1) {
     this.quantity--;
+
+      
+    }
+    else{
+      this.isAddedToCart = false;
+      this.quantity = 1;
+    }
   }
 
   increaseProductItem() {
