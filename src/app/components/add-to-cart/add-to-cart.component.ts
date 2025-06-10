@@ -15,10 +15,15 @@ export class AddToCartComponent {
   }
 
   decreaseProductItem() {
-    if (this.quantity < 1) {
-      this.isAddedToCart = false;
-    }
+    if (this.quantity > 1) {
     this.quantity--;
+
+      
+    }
+    else{
+      this.isAddedToCart = false;
+      this.quantity = 1;
+    }
   }
 
   increaseProductItem() {
