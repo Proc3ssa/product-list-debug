@@ -6,6 +6,7 @@ body {
   @include flex();
   width: 100%;
   min-height: 100dvh;
+  background-color: $body-backColor;
 }
 
 img {
