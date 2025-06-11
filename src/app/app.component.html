@@ -23,7 +23,7 @@
 
           <img [src]="dessert.image.thumbnail" alt="dessert image">
           </picture>
-          <app-add-to-cart />
+          <app-add-to-cart [product]="dessert" />
         </section>
         <section class="item-info">
           <p class="category">{{dessert.category}}</p>
@@ -37,42 +37,24 @@
   </section>
 
   <section class="cart">
-    <h2>Your Cart (0)</h2>
-    <!-- <div class="content">
+    <h2>Your Cart ({{ cartCount$ | async }})</h2>
+    <div class="content" *ngIf="(cartItems$ | async)?.length === 0">
       <div class="empty-cart-content">
         <img src="images/illustration-empty-cart.svg" alt="empty cart svg">
         <p class="empty-cart-description">
           Your added items will appear here
         </p>
       </div>
-    </div> -->
+    </div>
    
-    <div class="cart-items">
-      <div class="cart-item">
+    <div class="cart-items" *ngIf="(cartItems$ | async)?.length !== 0">
+      <div class="cart-item" *ngFor="let item of cartItems$ | async">
           <div class="details">
-            <h4>Classic Tiramisu</h4>
+            <h4>{{item.name}}</h4>
             
-            <p> <b class="quantity">1x</b>
-              <span class="unit-price">&#64; $5.50</span>
-              <span class="price"> <b> $5.50 </b></span>
-
-            </p>
-          </div>
-
-          <div class="close">
-            <button class="remove-item">
-              <img src="images/icon-remove-item.svg" alt="close icon">
-            </button>
-          </div>
-      </div>
-
-      <div class="cart-item">
-          <div class="details">
-            <h4>Classic Tiramisu</h4>
-            
-            <p> <b class="quantity">1x</b>
-              <span class="unit-price">&#64; $5.50</span>
-              <span class="price"> <b> $5.50 </b></span>
+            <p> <b class="quantity">{{item.quantity}}x</b>
+              <span class="unit-price">&#64; {{item.price | currency}}</span>
+              <span class="price"> <b> {{item.price * (item.quantity || 1) | currency}} </b></span>
 
             </p>
           </div>
@@ -85,7 +67,7 @@
       </div>
 
       <div class="total">
-        <span class="total-text">Order Total</span><span class="totalValue">$46.5</span>
+        <span class="total-text">Order Total</span><span class="totalValue">{{cartTotal$ | async | currency}}</span>
       </div>
 
       <div class="carbonneutral">
@@ -98,11 +80,7 @@
 
         </p>
       </div>
-
-      
-
-
-      </div>
+    </div>
     <button class="confirmOrder" (click)="toggleOrderConfirmed()">
       Confirm Order
     </button>
