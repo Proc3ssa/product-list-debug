@@ -262,4 +262,9 @@ main {
   width: 80%;
   max-width: 500px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 600px) {
+    width: 100%;
+    
+  }
 }
