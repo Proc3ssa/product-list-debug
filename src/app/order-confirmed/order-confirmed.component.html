@@ -1,6 +1,6 @@
 <section class="orderComplete">
-    <button class="close-button" (click)="onClose()">X</button>
-    <div class="container">
+    
+    <div class="top">
         <img src="./images/icon-order-confirmed.svg" alt="confirmed icon" class="checked">
 
     <h1>Order Confirmed</h1>
@@ -9,10 +9,79 @@
     </div>
 
     <div class="foods">
+
         <div class="food-item">
-            <img src="./images/image-waffle-tablet.jpg" alt="Waffle with Berries">
-            <p class="food-name">Waffle with Berries</p>
-            <p class="food-price">$6.50</p>
-        </div>    
+
+            <div class="foodDetail">
+                <div class="foodImage">
+                     <img src="/images/image-tiramisu-tablet.jpg" alt="image">
+                </div>
+
+                <div class="foodDets">
+                    <p>Classic Trimisu</p>
+
+                    <a><span class="times">1x</span> <span class="unit-price">&#64; $5.50</span></a>
+                </div>
+
+            </div>
+
+            <div class="price">
+                <p>$5.50</p>
+            </div>
+
+        </div>
+
+        <div class="food-item">
+
+            <div class="foodDetail">
+                <div class="foodImage">
+                     <img src="/images/image-tiramisu-tablet.jpg" alt="image">
+                </div>
+
+                <div class="foodDets">
+                    <p>Classic Trimisu</p>
+
+                    <a><span class="times">1x</span> <span class="unit-price">&#64; $5.50</span></a>
+                </div>
+
+            </div>
+
+            <div class="price">
+                <p>$5.50</p>
+            </div>
+
+        </div>
+
+        <div class="food-item">
+
+            <div class="foodDetail">
+                <div class="foodImage">
+                     <img src="/images/image-tiramisu-tablet.jpg" alt="image">
+                </div>
+
+                <div class="foodDets">
+                    <p>Classic Trimisu</p>
+
+                    <a><span class="times">1x</span> <span class="unit-price">&#64; $5.50</span></a>
+                </div>
+
+            </div>
+
+            <div class="price">
+                <p>$5.50</p>
+            </div>
+
+        </div>
+
+
+        <div class="total food">
+            <p class="total-text">Order Total</p>
+            <p class="totalValue">$46.50</p>
+        </div>
+          
+    </div>
+
+    <div class="newOrder">
+        <button (click)="onClose()">Start New Order</button>
     </div>
 </section>
