@@ -43,4 +43,8 @@ export class AppComponent implements OnInit {
   toggleOrderConfirmed() {
     this.isOrderConfirmedVisible = !this.isOrderConfirmedVisible;
   }
+
+  removeFromCart(product: Dessert) {
+    this.cartService.removeFromCart(product);
+  }
 };

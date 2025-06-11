@@ -34,6 +34,9 @@ export class AddToCartComponent implements OnDestroy {
 
   decreaseProductItem() {
     this.cartService.decreaseQuantity(this.product);
+    if (this.quantity === 0) {
+      this.isAddedToCart = false;
+    }
   }
 
   increaseProductItem() {
