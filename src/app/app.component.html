@@ -1,4 +1,12 @@
 <main>
+  <div class="modal-container" *ngIf="isOrderConfirmedVisible">
+    <div class="modal-content">
+      <app-order-confirmed
+        [isOrderConfirmedVisible]="isOrderConfirmedVisible"
+        (closeModal)="toggleOrderConfirmed()"
+      ></app-order-confirmed>
+    </div>
+  </div>
   <section class="desserts">
     <h1>Desserts</h1>
 
@@ -172,8 +180,8 @@
 
 
       </div>
-    <button class="confirmOrder">
-        Confirm Order
+    <button class="confirmOrder" (click)="toggleOrderConfirmed()">
+      Confirm Order
     </button>
 
   </section>
