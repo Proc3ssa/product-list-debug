@@ -13,13 +13,22 @@
     <div class="desserts-container">
       <div class="dessert-item" *ngFor="let dessert of desserts()">
         <section class="item-image-add-to-cart">
-          <img src="images/image-waffle-tablet.jpg" alt="dessert image">
+          <picture>
+            <source media="(min-width: 1024px)" [srcset]="dessert.image.desktop">
+
+            <source media="(min-width: 768px)" [srcset]="dessert.image.tablet">
+
+            <source media="(min-width: 480px)" [srcset]="dessert.image.mobile">
+
+
+          <img [src]="dessert.image.thumbnail" alt="dessert image">
+          </picture>
           <app-add-to-cart />
         </section>
         <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">$6.50</p>
+          <p class="category">{{dessert.category}}</p>
+          <p class="name">{{ dessert.name}}</p>
+          <p class="price">{{ dessert.price | currency }}</p>
         </section>
       </div>
     
