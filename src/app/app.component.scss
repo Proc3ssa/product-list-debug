@@ -1,5 +1,6 @@
-@use 'mixins' as *;
+@use './styles/mixins' as *;
 @use '../variables' as *;
+@use '../app/styles/fonts' as *;
 
 :host {
   width: 100%;
@@ -103,6 +104,121 @@ main {
   padding: 1rem;
   background-color: $cart-backColor;
   border-radius: 12px;
+  font-family: 'RedHatText-Regular', sans-serif;
+
+  .confirmOrder{
+     width: 90%;
+     color:white;
+     background-color: $red;
+     border-radius: 30px;
+     height: 53px;
+     @include TextPreset3;
+   }
+
+  .carbonneutral {
+    width: 100%;
+    height: 50px;
+    background-color: $body-backColor;
+    border-radius: 12px;
+    margin-bottom: 20px;
+     display: flex;
+      align-items: center;
+      justify-content: center;
+   
+   
+
+    img {
+      width: 30px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    p{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+    }
+
+  }
+
+  .total{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    color: black;
+    font-weight: lighter;
+    padding-block: 10px;
+
+    .total-text{
+      color: black;
+      @include TextPreset4;
+        }
+    .totalValue{
+      @include TextPreset2;
+      font-weight: bolder;
+      color: black;
+    }
+
+    p {
+      @include TextPreset3;
+      color: $rose-500;
+    }
+
+    span {
+      @include TextPreset2Bold;
+      color: $red;
+    }
+  }
+
+  .cart-items{
+    width: 100%;
+    margin-top: 24px;
+
+    .cart-item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0.5px solid $rose-400;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+
+       .quantity{
+        color: $red;
+      }
+
+      span{
+        color: $rose-400;
+      }
+    }
+
+    .details >  *{
+      padding-bottom: 10px;
+    }
+
+    .details p > *{
+      margin-right: 10px;
+    }
+
+    button {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid $rose-400;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        border-color: black;
+        color: black;
+        transition: all 300ms ease-in-out;
+      }
+    }
+  }
 
   h2 {
     @include TextPreset2;
