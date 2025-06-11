@@ -1,4 +1,12 @@
 <main>
+  <div class="modal-container" *ngIf="isOrderConfirmedVisible">
+    <div class="modal-content">
+      <app-order-confirmed
+        [isOrderConfirmedVisible]="isOrderConfirmedVisible"
+        (closeModal)="toggleOrderConfirmed()"
+      ></app-order-confirmed>
+    </div>
+  </div>
   <section class="desserts">
     <h1>Desserts</h1>
 
@@ -107,13 +115,74 @@
 
   <section class="cart">
     <h2>Your Cart (0)</h2>
-    <div class="content">
+    <!-- <div class="content">
       <div class="empty-cart-content">
         <img src="images/illustration-empty-cart.svg" alt="empty cart svg">
         <p class="empty-cart-description">
           Your added items will appear here
         </p>
       </div>
-    </div>
+    </div> -->
+   
+    <div class="cart-items">
+      <div class="cart-item">
+          <div class="details">
+            <h4>Classic Tiramisu</h4>
+            
+            <p> <b class="quantity">1x</b>
+              <span class="unit-price">&#64; $5.50</span>
+              <span class="price"> <b> $5.50 </b></span>
+
+            </p>
+          </div>
+
+          <div class="close">
+            <button class="remove-item">
+              <img src="images/icon-remove-item.svg" alt="close icon">
+            </button>
+          </div>
+      </div>
+
+      <div class="cart-item">
+          <div class="details">
+            <h4>Classic Tiramisu</h4>
+            
+            <p> <b class="quantity">1x</b>
+              <span class="unit-price">&#64; $5.50</span>
+              <span class="price"> <b> $5.50 </b></span>
+
+            </p>
+          </div>
+
+          <div class="close">
+            <button class="remove-item">
+              <img src="images/icon-remove-item.svg" alt="close icon">
+            </button>
+          </div>
+      </div>
+
+      <div class="total">
+        <span class="total-text">Order Total</span><span class="totalValue">$46.5</span>
+      </div>
+
+      <div class="carbonneutral">
+        <p class="carbon-neutral">
+
+          <img src="images/icon-carbon-neutral.svg" alt="carbon neutral icon">
+          
+          <a>This is a
+          <b>Carbon-Neutral </b>Delivery </a>
+
+        </p>
+      </div>
+
+      
+
+
+      </div>
+    <button class="confirmOrder" (click)="toggleOrderConfirmed()">
+      Confirm Order
+    </button>
+
   </section>
 </main>

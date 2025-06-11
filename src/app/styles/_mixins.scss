@@ -19,6 +19,11 @@
   line-height: 125%;
   font-family: $font-bold;
 }
+@mixin TextPreset2Bold {
+  font-size: 24px;
+  line-height: 125%;
+  font-family: $font-semibold;
+}
 @mixin TextPreset3 {
   font-size: 16px;
   line-height: 150%;
@@ -33,4 +38,10 @@
   font-size: 14px;
   line-height: 150%;
   font-family: $font-semibold;
+}
+
+@mixin alignCenterbetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

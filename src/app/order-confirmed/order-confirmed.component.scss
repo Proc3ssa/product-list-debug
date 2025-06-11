@@ -1,0 +1,129 @@
+@use '../styles/fonts' as *;
+@use '../styles/variables' as *;
+@use '../styles/fonts' as *;
+@use '../styles/mixins' as *;
+
+.orderComplete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 5px;
+  width: 100%;
+
+  .top, .foods,.newOrder{
+    margin-bottom: 25px;
+    width: 95%;
+    border: 1px solid transparent;
+  }
+
+  .top{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    img{
+      width: 48px;
+      height: 48px;
+    }
+
+    h1{
+     @include TextPreset1;
+    }
+
+    p{
+      color: $rose-400;
+      font-family: $font-regular ;
+    }
+  }
+
+  .foods{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: $rose-50;
+    border-radius: 8px;
+    border-bottom: 0.5px solid $rose-100;
+
+    .total{
+
+     @include alignCenterbetween;
+      font-weight: bolder;
+      color: $black;
+      margin-bottom: 10px;
+
+      .total-text{
+        color: $rose-500;
+        font-family: $font-regular;
+      }
+      .totalValue{
+        @include TextPreset2;
+        font-weight: bolder;
+        color: $black;
+      }
+    }
+
+    img{
+      width:48px;
+      height: 48px;
+      border-radius: 5px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .food-item, .foodDetail{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .food-item{
+
+      border-bottom: 0.5px solid $rose-100;
+      padding-bottom: 15px;
+
+      .price{
+        @include TextPreset3;
+      }
+    }
+
+    .foodDets{
+      line-height: 30px;
+
+      p{
+        color: $rose-900;
+        @include TextPreset3;
+      }
+
+      a .times{
+        color: $red;
+        @include TextPreset4Bold;
+
+      }
+
+      .unit-price{
+        color: $rose-500;
+      font-family: $font-regular;
+      margin-left: 10px;
+      }
+    }
+  }
+
+  .newOrder{
+   button{
+    width: 100%;
+    color: white;
+    background-color: $red;
+    border-radius: 30px;
+    height: 53px;
+    @include TextPreset3;
+   }
+  }
+
+
+
+}
