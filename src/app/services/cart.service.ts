@@ -38,6 +38,24 @@ export class CartService {
     this.updateCart();
   }
 
+  increaseQuantity(product: Dessert) {
+    const existingProduct = this.cartItems.find(item => item.name === product.name);
+    if (existingProduct) {
+      existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+      this.updateCart();
+    }
+  }
+
+  decreaseQuantity(product: Dessert) {
+    const existingProduct = this.cartItems.find(item => item.name === product.name);
+    if (existingProduct && existingProduct.quantity && existingProduct.quantity > 1) {
+      existingProduct.quantity--;
+      this.updateCart();
+    } else if (existingProduct && existingProduct.quantity === 1) {
+      this.removeFromCart(product);
+    }
+  }
+
   clearCart() {
     this.cartItems = [];
     this.updateCart();

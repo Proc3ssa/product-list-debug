@@ -1,18 +1,31 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { Dessert } from '../../interfaces/main';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-to-cart',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.scss'
 })
-export class AddToCartComponent {
+export class AddToCartComponent implements OnDestroy {
   @Input() product!: Dessert;
   isAddedToCart = false;
-  quantity = 1;
+  quantity: number = 0;
+  private cartSubscription: Subscription;
 
-  constructor(private cartService: CartService) {}
+  constructor(public cartService: CartService) {
+    this.cartSubscription = this.cartService.cartItems$.subscribe(items => {
+      this.quantity = items?.find(item => item?.name === this.product?.name)?.quantity ?? 0;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
+  }
 
   addToCart() {
     this.cartService.addToCart(this.product);
@@ -20,15 +33,10 @@ export class AddToCartComponent {
   }
 
   decreaseProductItem() {
-    if (this.quantity > 1) {
-      this.quantity--;
-    } else {
-      this.isAddedToCart = false;
-      this.quantity = 1;
-    }
+    this.cartService.decreaseQuantity(this.product);
   }
 
   increaseProductItem() {
-    ++this.quantity;
+    this.cartService.increaseQuantity(this.product);
   }
 }
