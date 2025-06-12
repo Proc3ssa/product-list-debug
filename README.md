@@ -57,3 +57,27 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+## Add to Cart Feature
+
+The "Add to Cart" feature allows users to add products to a shopping cart. Key functionalities include:
+
+* Adding products to the cart
+* Displaying the cart contents
+* Updating the quantity of items in the cart
+* Removing items from the cart
+* Calculating the total price of items in the cart
+
+## Screenshot
+
+![screenshot](./public/images/screenshot.png)
+
+
+
+## Author
+
+Faisal Halid Dene
+**Github** [proc3ssa](https://github.com/proc3ssa)
+**X** [processor_911](https://x.com/processor_911)
