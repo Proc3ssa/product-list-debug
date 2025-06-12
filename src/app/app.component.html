@@ -4,6 +4,7 @@
       <app-order-confirmed
         [isOrderConfirmedVisible]="isOrderConfirmedVisible"
         (closeModal)="toggleOrderConfirmed()"
+        [cartItems$]="cartItems$"
       ></app-order-confirmed>
     </div>
   </div>
@@ -11,158 +12,63 @@
     <h1>Desserts</h1>
 
     <div class="desserts-container">
-      <div class="dessert-item">
+      <div class="dessert-item" *ngFor="let dessert of desserts()">
         <section class="item-image-add-to-cart">
-          <img src="images/image-waffle-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
+          <picture>
+            <source media="(min-width: 1024px)" [srcset]="dessert.image.desktop">
+
+            <source media="(min-width: 768px)" [srcset]="dessert.image.tablet">
+
+            <source media="(min-width: 480px)" [srcset]="dessert.image.mobile">
+
+
+          <img [src]="dessert.image.thumbnail" alt="dessert image">
+          </picture>
+          <app-add-to-cart [product]="dessert" />
         </section>
         <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">$6.50</p>
+          <p class="category">{{dessert.category}}</p>
+          <p class="name">{{ dessert.name}}</p>
+          <p class="price">{{ dessert.price | currency }}</p>
         </section>
       </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-creme-brulee-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
+    
       </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-macaron-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-tiramisu-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-baklava-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-meringue-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-cake-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-brownie-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-      <div class="dessert-item">
-        <section class="item-image-add-to-cart">
-          <img src="images/image-panna-cotta-tablet.jpg" alt="dessert image">
-          <app-add-to-cart />
-        </section>
-        <section class="item-info">
-          <p class="category">Waffle</p>
-          <p class="name">Waffle with Berries</p>
-          <p class="price">6.50</p>
-        </section>
-      </div>
-    </div>
+    
   </section>
 
   <section class="cart">
-    <h2>Your Cart (0)</h2>
-    <!-- <div class="content">
+    <h2>Your Cart ({{ cartCount$ | async }})</h2>
+    <div class="content" *ngIf="(cartItems$ | async)?.length === 0">
       <div class="empty-cart-content">
         <img src="images/illustration-empty-cart.svg" alt="empty cart svg">
         <p class="empty-cart-description">
           Your added items will appear here
         </p>
       </div>
-    </div> -->
+    </div>
    
-    <div class="cart-items">
-      <div class="cart-item">
+    <div class="cart-items" *ngIf="(cartItems$ | async)?.length !== 0">
+      <div class="cart-item" *ngFor="let item of cartItems$ | async">
           <div class="details">
-            <h4>Classic Tiramisu</h4>
+            <h4>{{item.name}}</h4>
             
-            <p> <b class="quantity">1x</b>
-              <span class="unit-price">&#64; $5.50</span>
-              <span class="price"> <b> $5.50 </b></span>
+            <p> <b class="quantity">{{item.quantity}}x</b>
+              <span class="unit-price">&#64; {{item.price | currency}}</span>
+              <span class="price"> <b> {{item.price * (item.quantity || 1) | currency}} </b></span>
 
             </p>
           </div>
 
           <div class="close">
-            <button class="remove-item">
-              <img src="images/icon-remove-item.svg" alt="close icon">
-            </button>
-          </div>
-      </div>
-
-      <div class="cart-item">
-          <div class="details">
-            <h4>Classic Tiramisu</h4>
-            
-            <p> <b class="quantity">1x</b>
-              <span class="unit-price">&#64; $5.50</span>
-              <span class="price"> <b> $5.50 </b></span>
-
-            </p>
-          </div>
-
-          <div class="close">
-            <button class="remove-item">
+            <button class="remove-item" (click)="removeFromCart(item)">
               <img src="images/icon-remove-item.svg" alt="close icon">
             </button>
           </div>
       </div>
 
       <div class="total">
-        <span class="total-text">Order Total</span><span class="totalValue">$46.5</span>
+        <span class="total-text">Order Total</span><span class="totalValue">{{cartTotal$ | async | currency}}</span>
       </div>
 
       <div class="carbonneutral">
@@ -175,12 +81,8 @@
 
         </p>
       </div>
-
-      
-
-
-      </div>
-    <button class="confirmOrder" (click)="toggleOrderConfirmed()">
+    </div>
+    <button *ngIf="(cartItems$ | async)?.length !== 0" class="confirmOrder" (click)="toggleOrderConfirmed()">
       Confirm Order
     </button>
 

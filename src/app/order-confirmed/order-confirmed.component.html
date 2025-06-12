@@ -1,84 +1,48 @@
-<section class="orderComplete">
+<section class="orderComplete" *ngIf="cartItems$ | async as cartItems">
     
     <div class="top">
         <img src="./images/icon-order-confirmed.svg" alt="confirmed icon" class="checked">
-
+    
     <h1>Order Confirmed</h1>
 
     <p>We hope you enjoy your food!</p>
     </div>
 
-    <div class="foods">
+    <div class="foods" *ngIf="cartItems.length > 0">
+       
+       
 
-        <div class="food-item">
+        <div class="food-item" *ngFor="let item of cartItems">
 
             <div class="foodDetail">
                 <div class="foodImage">
-                     <img src="/images/image-tiramisu-tablet.jpg" alt="image">
+                     <img [src]="item.image.desktop" [alt]="item.name">
                 </div>
 
                 <div class="foodDets">
-                    <p>Classic Trimisu</p>
+                    <p>{{ item.category }}</p>
 
-                    <a><span class="times">1x</span> <span class="unit-price">&#64; $5.50</span></a>
+                    <a><span class="times">{{ item.quantity }}x</span> <span class="unit-price">&#64;${{ item.price}}</span></a>
                 </div>
 
             </div>
 
             <div class="price">
-                <p>$5.50</p>
+                <p>{{ (item?.price ?? 0) * (item?.quantity ?? 0) | currency }}</p>
             </div>
 
         </div>
 
-        <div class="food-item">
+        
 
-            <div class="foodDetail">
-                <div class="foodImage">
-                     <img src="/images/image-tiramisu-tablet.jpg" alt="image">
-                </div>
-
-                <div class="foodDets">
-                    <p>Classic Trimisu</p>
-
-                    <a><span class="times">1x</span> <span class="unit-price">&#64; $5.50</span></a>
-                </div>
-
-            </div>
-
-            <div class="price">
-                <p>$5.50</p>
-            </div>
-
-        </div>
-
-        <div class="food-item">
-
-            <div class="foodDetail">
-                <div class="foodImage">
-                     <img src="/images/image-tiramisu-tablet.jpg" alt="image">
-                </div>
-
-                <div class="foodDets">
-                    <p>Classic Trimisu</p>
-
-                    <a><span class="times">1x</span> <span class="unit-price">&#64; $5.50</span></a>
-                </div>
-
-            </div>
-
-            <div class="price">
-                <p>$5.50</p>
-            </div>
-
-        </div>
+        
 
 
         <div class="total food">
             <p class="total-text">Order Total</p>
-            <p class="totalValue">$46.50</p>
+            <p class="totalValue">{{ cartItems | getTotal | currency }}</p>
         </div>
-          
+        
     </div>
 
     <div class="newOrder">

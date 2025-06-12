@@ -1,0 +1,252 @@
+@use '../styles/mixins' as *;
+@use '../styles/variables' as *;
+@use '../styles/fonts' as *;
+
+:host {
+  width: 100%;
+}
+
+
+
+
+.desserts {
+  @include flex(column, flex-start, stretch, 2rem);
+  width: 100%;
+  height: 100%;
+  
+  h1 {
+    @include TextPreset1;
+    color: $black;
+  }
+}
+
+// dessert section
+.desserts-container {
+  @include flex(row, flex-start, stretch, 1.5rem);
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  
+
+  .dessert-item {
+    @include flex(column, flex-start, stretch, 2rem);
+    width: 250px;
+    height: fit-content;
+
+    .item-image-add-to-cart {
+      @include flex(column);
+
+      img {
+        aspect-ratio: 1;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+    }
+
+    .add-to-cart-container button {
+      @include flex(row, flex-start, stretch, 0.5rem);
+      padding: 0.5rem 1rem;
+      border: 1px solid $rose-400;
+      background-color: $white;
+      border-radius: 50px;
+      width: fit-content;
+      margin: -1.2rem auto;
+      cursor: pointer;
+
+      &:hover {
+        color: $red;
+        border-color: $red;
+        transition: all 300ms ease-in-out;
+      }
+
+      p {
+        @include TextPreset4Bold;
+      }
+    }
+
+    // item info
+    .item-info {
+      .category {
+        @include TextPreset4;
+      }
+      .name, .price {
+        @include TextPreset3;
+      }
+      .price {
+        color: $red;
+      }
+    }
+  }
+}
+// cart section
+.cart {
+  width: 300px;
+  height: fit-content;
+  flex: 1 0 380px;
+  padding: 1rem;
+  background-color: $cart-backColor;
+  border-radius: 12px;
+  font-family: 'RedHatText-Regular', sans-serif;
+
+  .confirmOrder{
+     width: 90%;
+     color:white;
+     background-color: $red;
+     border-radius: 30px;
+     height: 53px;
+     @include TextPreset3;
+   }
+
+  .carbonneutral {
+    width: 100%;
+    height: 50px;
+    background-color: $body-backColor;
+    border-radius: 12px;
+    margin-bottom: 20px;
+     display: flex;
+      align-items: center;
+      justify-content: center;
+   
+   
+
+    img {
+      width: 30px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    p{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+    }
+
+  }
+
+  .total{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    color: black;
+    font-weight: lighter;
+    padding-block: 10px;
+
+    .total-text{
+      color: black;
+      @include TextPreset4;
+        }
+    .totalValue{
+      @include TextPreset2;
+      font-weight: bolder;
+      color: black;
+    }
+
+    p {
+      @include TextPreset3;
+      color: $rose-500;
+    }
+
+    span {
+      @include TextPreset2Bold;
+      color: $red;
+    }
+  }
+
+  .cart-items{
+    width: 100%;
+    margin-top: 24px;
+
+    .cart-item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0.5px solid $rose-400;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+
+       .quantity{
+        color: $red;
+      }
+
+      span{
+        color: $rose-400;
+      }
+    }
+
+    .details >  *{
+      padding-bottom: 10px;
+    }
+
+    .details p > *{
+      margin-right: 10px;
+    }
+
+    button {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid $rose-400;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        border-color: black;
+        color: black;
+        transition: all 300ms ease-in-out;
+      }
+    }
+  }
+
+  h2 {
+    @include TextPreset2;
+    color: $red;
+  }
+
+  .content {
+    width: 100%;
+    height: fit-content;
+
+    .empty-cart-content {
+      @include flex(column, center, center);
+      width: 100%;
+      
+      p {
+        @include TextPreset4Bold;
+        color: $rose-500;
+      }
+    }
+  }
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 600px) {
+    width: 100%;
+    
+  }
+}
