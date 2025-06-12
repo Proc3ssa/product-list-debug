@@ -288,4 +288,12 @@ main {
     width: 100%;
     
   }
+
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    bottom:0;
+    position: absolute;
+    
+  }
 }
