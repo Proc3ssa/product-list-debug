@@ -40,9 +40,9 @@
 
         <div class="total food">
             <p class="total-text">Order Total</p>
-            <p class="totalValue">$46.50</p>
+            <p class="totalValue">{{ cartItems | getTotal | currency }}</p>
         </div>
-          
+        
     </div>
 
     <div class="newOrder">
