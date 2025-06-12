@@ -72,7 +72,7 @@ The "Add to Cart" feature allows users to add products to a shopping cart. Key f
 
 ## Screenshot
 
-![screenshot](./public/images/screenshot.png)
+![screenshot](./public/images/screenshot.jpg)
 
 
 
