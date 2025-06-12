@@ -81,7 +81,7 @@
         </p>
       </div>
     </div>
-    <button class="confirmOrder" (click)="toggleOrderConfirmed()">
+    <button *ngIf="(cartItems$ | async)?.length !== 0" class="confirmOrder" (click)="toggleOrderConfirmed()">
       Confirm Order
     </button>
 
