@@ -40,16 +40,36 @@ main {
 
 // dessert section
 .desserts-container {
-  @include flex(row, flex-start, stretch, 1.5rem);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
   height: 100%;
-  
+  gap: 1.7rem;;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 
   .dessert-item {
     @include flex(column, flex-start, stretch, 2rem);
-    width: 250px;
+    
     height: fit-content;
+
+    // @media (max-width: 480px) {
+     
+    //   picture{
+    //      width: 100%;
+    //      margin-bottom: 2rem;
+    //      border:4px solid red;
+    //   }
+      
+    // }
 
     .item-image-add-to-cart {
       @include flex(column);
@@ -58,6 +78,7 @@ main {
         aspect-ratio: 1;
         border-radius: 10px;
         object-fit: cover;
+        width: 100%;
       }
     }
 
