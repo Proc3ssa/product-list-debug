@@ -4,6 +4,7 @@
       <app-order-confirmed
         [isOrderConfirmedVisible]="isOrderConfirmedVisible"
         (closeModal)="toggleOrderConfirmed()"
+        [cartItems$]="cartItems$"
       ></app-order-confirmed>
     </div>
   </div>
